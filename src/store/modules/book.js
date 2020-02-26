@@ -4,17 +4,23 @@
  */
 const book = {
   state: {
-    test: 1
+    fileName: 1,
+    menuVisible: false
   },
   mutations: {
-    SET_TEST: (state, newTest) => {
-      state.test = newTest
+    SET_FILENAME: (state, fileName) => {
+      state.fileName = fileName
+    },
+    SET_MENU_VISIBLE: (state, menuVisible) => {
+      state.menuVisible = menuVisible
     }
   },
   actions: {
-    setTest: ({ commit, state }, newTest) => {
-      console.log(state.test, newTest)
-      return commit('SET_TEST', newTest)// 返回一个promise对象
+    setFileName: ({ commit }, fileName) => {
+      return commit('SET_FILENAME', fileName)// 返回一个promise对象
+    },
+    setMenuVisible: ({ commit }, menuVisible) => {
+      return commit('SET_MENU_VISIBLE', menuVisible)
     }
   }
 }
