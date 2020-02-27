@@ -5,7 +5,8 @@
 const book = {
   state: {
     fileName: 1,
-    menuVisible: false
+    menuVisible: false,
+    settingVisible: -1// -1:不显示,0:字体,1:主题,2:进度,3:目录
   },
   mutations: {
     SET_FILENAME: (state, fileName) => {
@@ -13,14 +14,9 @@ const book = {
     },
     SET_MENU_VISIBLE: (state, menuVisible) => {
       state.menuVisible = menuVisible
-    }
-  },
-  actions: {
-    setFileName: ({ commit }, fileName) => {
-      return commit('SET_FILENAME', fileName)// 返回一个promise对象
     },
-    setMenuVisible: ({ commit }, menuVisible) => {
-      return commit('SET_MENU_VISIBLE', menuVisible)
+    SET_SETTING_VISIBLE: (state, settingVisible) => {
+      state.settingVisible = settingVisible
     }
   }
 }

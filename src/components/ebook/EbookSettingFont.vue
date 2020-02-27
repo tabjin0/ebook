@@ -1,0 +1,146 @@
+<template>
+  <transition name="slide-up">
+    <div class="setting-wrapper" v-show="menuVisible && settingVisible === 0">
+      <div class="setting-font-size">
+        <div class="preview" :style="{fontSize: fontSizeList[0].fontSize + 'px'}">A</div>
+        <div class="select">
+          <div class="select-wrapper" v-for="(item, index) in fontSizeList" :key="index"
+               @click="setFontSize(item.fontSize)">
+            <div class="line"></div>
+            <div class="point-wrapper">
+              <div class="point" v-show="defaultFontSize === item.fontSize">
+                <div class="small-point"></div>
+              </div>
+            </div>
+            <div class="line"></div>
+          </div>
+        </div>
+        <div class="preview" :style="{fontSize: fontSizeList[fontSizeList.length - 1].fontSize + 'px'}">A</div>
+      </div>
+      <!--      <div class="setting-theme" v-else-if="showTag === 1">-->
+      <!--        <div class="setting-theme-item" v-for="(item, index) in themeList" :key="index" @click="setTheme(index)">-->
+      <!--          <div class="preview" :style="{background: item.style.body.background}"-->
+      <!--               :class="{'no-border': item.style.body.background !== '#fff'}"></div>-->
+      <!--          <div class="text" :class="{'selected': index === defaultTheme}">{{item.name}}</div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="setting-progress" v-else-if="showTag === 2">-->
+      <!--        <div class="progress-wrapper">-->
+      <!--          <input class="progress" type="range"-->
+      <!--                 max="100"-->
+      <!--                 min="0"-->
+      <!--                 step="1"-->
+      <!--                 @change="onProgressChange($event.target.value)" @input="onProgressInput($event.target.value)"-->
+      <!--                 :value="progress"-->
+      <!--                 :disabled="!bookAvailable"-->
+      <!--                 ref="progress">-->
+      <!--        </div>-->
+      <!--        <div class="text-wrapper">-->
+      <!--          <span>{{bookAvailable ? progress + '%' : '加载中...'}}</span>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+  </transition>
+</template>
+
+<script>
+  import { ebookMixin } from '../../utils/mixin'
+
+  export default {
+    name: 'EbookSettingFont',
+    mixins: [ebookMixin],
+    data () {
+      return {
+        fontSizeList: [
+          { fontSize: 14 }
+        ]
+      }
+    }
+  }
+</script>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+  @import "../../assets/styles/global.scss";
+
+  .setting-wrapper {
+    position: absolute;
+    bottom: px2rem(48);
+    left: 0;
+    z-index: 101;
+    width: 100%;
+    height: px2rem(60);
+    background: white;
+    box-shadow: 0 px2rem(-8) px2rem(8) rgba(0, 0, 0, .15);
+
+    .setting-font-size {
+      display: flex;
+      height: 100%;
+
+      .preview {
+        flex: 0 0 px2rem(40);
+        @include center;
+      }
+
+      .select {
+        display: flex;
+        flex: 1;
+
+        .select-wrapper {
+          flex: 1;
+          display: flex;
+          align-items: center;
+
+          &:first-child {
+            .line {
+              &:first-child {
+                border-top: none;
+              }
+            }
+          }
+
+          &:last-child {
+            .line {
+              &:last-child {
+                border-top: none;
+              }
+            }
+          }
+
+          .line {
+            flex: 1;
+            height: 0;
+            border-top: px2rem(1) solid #ccc;
+          }
+
+          .point-wrapper {
+            position: relative;
+            flex: 0 0 0;
+            width: 0;
+            height: px2rem(7);
+            border-left: px2rem(1) solid #ccc;
+
+            .point {
+              position: absolute;
+              top: px2rem(-8);
+              left: px2rem(-10);
+              width: px2rem(20);
+              height: px2rem(20);
+              border-radius: 50%;
+              background: white;
+              border: px2rem(1) solid #ccc;
+              box-shadow: 0 px2rem(4) px2rem(4) rgba(0, 0, 0, .15);
+              @include center;
+
+              .small-point {
+                width: px2rem(5);
+                height: px2rem(5);
+                background: black;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
