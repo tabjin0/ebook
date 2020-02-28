@@ -57,7 +57,7 @@
     },
     methods: {
       setFontSize (fontSize) {
-
+        this.currentBook.rendition.themes.fontSize(fontSize)
       }
     }
   }

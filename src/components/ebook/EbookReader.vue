@@ -43,6 +43,7 @@
       initEpub () {
         const url = 'http://localhost:8085/epub/' + this.fileName + '.epub'
         this.book = new Epub(url)
+        this.setCurrentBook(this.book)
         this.rendition = this.book.renderTo('read', {
           width: innerWidth,
           height: innerHeight,
