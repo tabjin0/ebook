@@ -29,12 +29,16 @@
         }
       },
       toggleTitleAndMenu () {
+        if (this.menuVisible) {
+          this.setSettingVisible(-1)
+        }
         // this.$store.dispatch('setMenuVisible', !this.menuVisible)
         this.setMenuVisible(!this.menuVisible)
       },
       hideTitleAndMenu () {
         // this.$store.dispatch('setMenuVisible', false)
         this.setMenuVisible(false)
+        this.setSettingVisible(-1)
       },
       initEpub () {
         const url = 'http://localhost:8085/epub/' + this.fileName + '.epub'
